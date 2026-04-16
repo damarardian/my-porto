@@ -1,0 +1,7 @@
+{
+  "$schema": "https://unpkg.com/jsrepo@latest/schemas/jsrepo.json",
+  "repos": ["https://vue-bits.dev/r"],
+  "paths": {
+    "component": "./src/components"
+  }
+}
