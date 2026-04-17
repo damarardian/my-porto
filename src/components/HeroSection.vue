@@ -28,11 +28,14 @@ import profileImg from '@/assets/profile.png'
             :mini-avatar-url="profileImg"
             name="Damar ardian alfirisky"
             title="DevOps Engineer & PHP Developer"
-            handle="johndoe"
+            handle="damarardian"
             status="Available for work"
             contact-text="Hire Me"
             :show-user-info="true"
             :enable-tilt="true"
+            :show-behind-gradient="false"
+            inner-gradient="linear-gradient(145deg, rgba(20,20,30,0.9) 0%, rgba(15,15,25,0.95) 100%)"
+            behind-gradient="none"
           />
         </div>
 
@@ -44,7 +47,7 @@ import profileImg from '@/assets/profile.png'
 
           <h1 class="hero__name">
             <DecryptedText
-              text="John Doe"
+              text="Damar ardian alfirisky"
               :speed="80"
               :max-iterations="15"
               :sequential="true"
@@ -133,7 +136,7 @@ import profileImg from '@/assets/profile.png'
   position: relative;
   z-index: 2;
   padding-top: calc(var(--nav-height) + var(--space-2xl));
-  padding-bottom: var(--space-3xl);
+  padding-bottom: 140px; /* Provides safe space for absolute scroll indicator */
 }
 
 .hero__profile {
@@ -155,6 +158,62 @@ import profileImg from '@/assets/profile.png'
 :deep(.pc-card) {
   height: 420px !important;
   max-height: 420px !important;
+  /* Remove colorful background, keep dark with subtle border */
+  background-image: none !important;
+  background-color: #0d0d18 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Remove holographic shine effect */
+:deep(.pc-shine),
+:deep(.pc-shine::before),
+:deep(.pc-shine::after) {
+  background-image: none !important;
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Remove colored glare, keep subtle light reflection */
+:deep(.pc-glare) {
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    rgba(255, 255, 255, 0.06) 12%,
+    rgba(255, 255, 255, 0.02) 90%
+  ) !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+}
+
+/* Clean inner background */
+:deep(.pc-inside) {
+  background-color: rgba(10, 10, 20, 0.95) !important;
+  background-image: linear-gradient(145deg, rgba(20,20,30,0.9) 0%, rgba(12,12,22,0.95) 100%) !important;
+}
+
+/* Make avatar show normally without color blending */
+:deep(.pc-avatar-content) {
+  mix-blend-mode: normal !important;
+}
+
+:deep(.pc-avatar-content .avatar) {
+  opacity: 1 !important;
+}
+
+/* Clean up text colors in card */
+:deep(.pc-details h3) {
+  background-image: linear-gradient(to bottom, #fff, rgba(255,255,255,0.7)) !important;
+}
+
+:deep(.pc-details p) {
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.5)) !important;
+}
+
+/* Subtle border glow on hover instead of colors */
+:deep(.pc-card-wrapper:hover .pc-card),
+:deep(.pc-card-wrapper.active .pc-card) {
+  border-color: rgba(0, 212, 170, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+              0 0 60px rgba(0, 212, 170, 0.05) !important;
 }
 
 .hero__info {

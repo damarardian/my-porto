@@ -34,8 +34,8 @@ onMounted(() => {
 <template>
   <section id="about" class="about section">
     <div class="container">
+      <div class="tag">// About Me</div>
       <div class="about__header">
-        <span class="tag">// About Me</span>
         <SplitText
           :text="'Get to know me'"
           class="section-title"

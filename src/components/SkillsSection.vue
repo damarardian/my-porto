@@ -102,22 +102,13 @@ const skillCategories = [
             </div>
 
             <div class="skills__list">
-              <div
+              <span
                 v-for="(skill, idx) in category.skills"
                 :key="idx"
-                class="skills__item"
+                class="skills__tag"
               >
-                <div class="skills__item-info">
-                  <span class="skills__item-name">{{ skill.name }}</span>
-                  <span class="skills__item-level">{{ skill.level }}%</span>
-                </div>
-                <div class="skills__item-bar">
-                  <div
-                    class="skills__item-fill"
-                    :style="{ width: skill.level + '%' }"
-                  ></div>
-                </div>
-              </div>
+                {{ skill.name }}
+              </span>
             </div>
           </div>
         </BorderGlow>
@@ -164,42 +155,28 @@ const skillCategories = [
 
 .skills__list {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
 }
 
-.skills__item-info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.skills__item-name {
+.skills__tag {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   font-family: var(--font-mono);
+  transition: all var(--transition-fast);
+  cursor: default;
 }
 
-.skills__item-level {
-  font-size: var(--font-size-xs);
+.skills__tag:hover {
+  border-color: var(--color-accent-primary);
   color: var(--color-accent-primary);
-  font-family: var(--font-mono);
-  font-weight: 600;
-}
-
-.skills__item-bar {
-  width: 100%;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.skills__item-fill {
-  height: 100%;
-  background: var(--color-accent-gradient);
-  border-radius: var(--radius-full);
-  transition: width 1s ease;
+  background: rgba(0, 212, 170, 0.05);
+  box-shadow: 0 0 15px rgba(0, 212, 170, 0.1);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

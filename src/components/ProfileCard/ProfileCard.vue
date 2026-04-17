@@ -685,7 +685,7 @@ onUnmounted(() => {
 .pc-details {
   width: 100%;
   position: absolute;
-  top: 3em;
+  top: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -693,11 +693,14 @@ onUnmounted(() => {
 .pc-details h3 {
   font-weight: 600;
   margin: 0;
-  font-size: min(5svh, 3em);
-  margin: 0;
-  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
+  /* font-size: 20px; */
+  font-size: clamp(16px, 4vw, 30px);
+  line-height: 1.1;
+  padding: 0 16px;
+  word-break: break-word;
+  /* background-image: linear-gradient(to bottom, #fff, #6f6fbe); */
+  /* background-size: 1em 1.5em; */
+  /* -webkit-text-fill-color: transparent; */
   background-clip: text;
   -webkit-background-clip: text;
 }
@@ -705,11 +708,13 @@ onUnmounted(() => {
 .pc-details p {
   font-weight: 600;
   position: relative;
-  top: -12px;
-  white-space: nowrap;
-  font-size: 16px;
-  margin: 0 auto;
-  width: min-content;
+  margin-top: 8px;
+  white-space: normal;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 8px auto 0;
+  width: 100%;
+  padding: 0 16px;
   background-image: linear-gradient(to bottom, #fff, #4a4ac0);
   background-size: 1em 1.5em;
   -webkit-text-fill-color: transparent;
@@ -754,11 +759,11 @@ onUnmounted(() => {
   }
 
   .pc-details h3 {
-    font-size: min(4svh, 2.5em);
+    font-size: clamp(1.25rem, 4svh, 2rem);
   }
 
   .pc-details p {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .pc-user-info {
@@ -802,12 +807,11 @@ onUnmounted(() => {
   }
 
   .pc-details h3 {
-    font-size: min(3.5svh, 2em);
+    font-size: clamp(1rem, 3.5svh, 1.5rem);
   }
 
   .pc-details p {
     font-size: 12px;
-    top: -8px;
   }
 
   .pc-user-info {
@@ -849,11 +853,11 @@ onUnmounted(() => {
   }
 
   .pc-details h3 {
-    font-size: min(3svh, 1.5em);
+    font-size: 1rem;
   }
 
   .pc-details p {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .pc-user-info {

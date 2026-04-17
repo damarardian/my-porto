@@ -152,7 +152,7 @@ const setFilter = (filterId) => {
               <template #card-1>
                 <div class="portfolio__swap-card">
                   <img :src="project.images[1]" :alt="project.title + ' preview 2'" />
-                  <div class="portfolio__swap-overlay">
+                  <div class="portfolio__swap-overlay"> 
                     <span class="portfolio__swap-label">Preview 2</span>
                   </div>
                 </div>
@@ -255,8 +255,8 @@ const setFilter = (filterId) => {
 
 .portfolio__card-swap-wrapper {
   position: relative;
-  width: 100%;
-  height: 320px;
+  width: auto !important;
+  height: auto !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,8 +268,11 @@ const setFilter = (filterId) => {
 :deep(.card-swap-container) {
   position: relative !important;
   transform: none !important;
+  translate: none !important;
+  scale: none !important;
   bottom: auto !important;
   right: auto !important;
+  margin: 0 auto;
 }
 
 .portfolio__swap-card {
@@ -368,14 +371,18 @@ const setFilter = (filterId) => {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .portfolio__card-swap-wrapper {
-    height: 280px;
+    height: auto !important;
+    width: auto !important;
+    transform: scale(0.85);
+    transform-origin: center center;
   }
+}
 
-  :deep(.card-swap-card) {
-    max-width: 280px !important;
-    max-height: 200px !important;
+@media (max-width: 480px) {
+  .portfolio__card-swap-wrapper {
+    transform: scale(0.7);
   }
 }
 </style>
