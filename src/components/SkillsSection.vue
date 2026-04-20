@@ -5,14 +5,13 @@ import GradientText from '@/components/GradientText/GradientText.vue'
 const skillCategories = [
   {
     title: 'DevOps & Cloud',
-    icon: '☁️',
     glowColor: '170 80 60',
     colors: ['#00d4aa', '#0099ff', '#00d4aa'],
     skills: [
       { name: 'Docker', icon: 'docker/docker-original' },
       { name: 'Kubernetes', icon: 'kubernetes/kubernetes-plain' },
-      { name: 'AWS', icon: 'amazonwebservices/amazonwebservices-original-wordmark' },
-      { name: 'GCP', icon: 'googlecloud/googlecloud-original' },
+      // { name: 'AWS', icon: 'amazonwebservices/amazonwebservices-original-wordmark' },
+      // { name: 'GCP', icon: 'googlecloud/googlecloud-original' },
       { name: 'Terraform', icon: 'terraform/terraform-original' },
       { name: 'Ansible', icon: 'ansible/ansible-original' },
       { name: 'Linux', icon: 'linux/linux-original' }
@@ -20,35 +19,32 @@ const skillCategories = [
   },
   {
     title: 'CI/CD & Monitoring',
-    icon: '🔄',
     glowColor: '210 80 60',
     colors: ['#0099ff', '#38bdf8', '#0099ff'],
     skills: [
-      { name: 'Jenkins', icon: 'jenkins/jenkins-original' },
+      // { name: 'Jenkins', icon: 'jenkins/jenkins-original' },
       { name: 'GitHub Actions', icon: 'github/github-original' },
       { name: 'GitLab CI', icon: 'gitlab/gitlab-original' },
       { name: 'Prometheus', icon: 'prometheus/prometheus-original' },
       { name: 'Grafana', icon: 'grafana/grafana-original' },
-      { name: 'ELK Stack', icon: 'elasticsearch/elasticsearch-original' }
+      // { name: 'ELK Stack', icon: 'elasticsearch/elasticsearch-original' }
     ]
   },
   {
     title: 'PHP & Backend',
-    icon: '🐘',
     glowColor: '260 80 70',
     colors: ['#c084fc', '#8978ff', '#c084fc'],
     skills: [
       { name: 'PHP 8.x', icon: 'php/php-original' },
       { name: 'Laravel', icon: 'laravel/laravel-original' },
       { name: 'MySQL', icon: 'mysql/mysql-original' },
-      { name: 'PostgreSQL', icon: 'postgresql/postgresql-original' },
-      { name: 'Redis', icon: 'redis/redis-original' },
+      // { name: 'PostgreSQL', icon: 'postgresql/postgresql-original' },
+      // { name: 'Redis', icon: 'redis/redis-original' },
       { name: 'Postman', icon: 'postman/postman-original' }
     ]
   },
   {
     title: 'Tools & Others',
-    icon: '🛠️',
     glowColor: '35 80 60',
     colors: ['#ffaa00', '#f472b6', '#ffaa00'],
     skills: [
@@ -56,8 +52,8 @@ const skillCategories = [
       { name: 'Nginx', icon: 'nginx/nginx-original' },
       { name: 'Bash', icon: 'bash/bash-original' },
       { name: 'Python', icon: 'python/python-original' },
-      { name: 'Vue.js', icon: 'vuejs/vuejs-original' },
-      { name: 'Ubuntu', icon: 'ubuntu/ubuntu-plain' }
+      // { name: 'Vue.js', icon: 'vuejs/vuejs-original' },
+      { name: 'Debian', icon: 'debian/debian-original' }
     ]
   }
 ]

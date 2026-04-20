@@ -4,6 +4,7 @@ import CardSwap from '@/components/CardSwap/CardSwap.vue'
 import ShinyText from '@/components/ShinyText/ShinyText.vue'
 
 const activeFilter = ref('all')
+const emit = defineEmits(['view-project'])
 
 const filters = [
   { id: 'all', label: 'All Projects' },
@@ -14,20 +15,20 @@ const filters = [
 
 const projects = [
   {
-    title: 'Cloud Migration Platform',
-    description: 'Migrated legacy infrastructure to Kubernetes with zero downtime. Implemented CI/CD pipelines and monitoring.',
+    title: 'On Premise Infrastructure',
+    description: 'Architected and deployed scalable on-premise infrastructure using Proxmox and Kubernetes. Configured high-availability clusters and automated environment provisioning via Terraform.',
     images: [
       'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=500&h=350&fit=crop',
       'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=350&fit=crop',
       'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=350&fit=crop'
     ],
-    tags: ['Kubernetes', 'Docker', 'Terraform', 'AWS'],
+    tags: ['Kubernetes', 'Docker', 'Terraform', 'Proxmox'],
     category: 'devops',
     link: '#'
   },
   {
-    title: 'E-Commerce Backend API',
-    description: 'Built a high-performance REST API with Laravel serving 100K+ requests/day with Redis caching.',
+    title: 'Personal Project',
+    description: 'Developed a custom high-performance REST API as a personal sandbox project. Leveraged PHP 8 and Laravel alongside Redis caching to deliver fast data processing.',
     images: [
       'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=350&fit=crop',
       'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=350&fit=crop',
@@ -39,19 +40,19 @@ const projects = [
   },
   {
     title: 'CI/CD Pipeline Automation',
-    description: 'Designed end-to-end CI/CD pipelines reducing deployment time by 80% with automated testing and rollbacks.',
+    description: 'Designed and implemented robust end-to-end continuous integration and deployment workflows. Integrated Docker, Jenkins, and GitHub Actions to reduce manual deployment errors.',
     images: [
       'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=500&h=350&fit=crop',
       'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=500&h=350&fit=crop',
       'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=500&h=350&fit=crop'
     ],
-    tags: ['Jenkins', 'GitHub Actions', 'Docker', 'Shell'],
-    category: 'devops',
+    tags: ['Jenkins', 'GitHub Actions', 'Docker'],
+    category: 'cloud',
     link: '#'
   },
   {
-    title: 'Multi-Tenant SaaS Platform',
-    description: 'Architected a multi-tenant SaaS application handling 500+ tenants with isolated databases.',
+    title: 'Freelance Project',
+    description: 'Delivered a tailored multi-tenant SaaS application for a freelance client. Executed isolated PostgreSQL database handling connected to a responsive Vue.js frontend.',
     images: [
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=350&fit=crop',
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=350&fit=crop',
@@ -63,28 +64,28 @@ const projects = [
   },
   {
     title: 'Infrastructure Monitoring',
-    description: 'Built comprehensive monitoring stack with Prometheus, Grafana, and custom alerting for 200+ servers.',
+    description: 'Established a centralized infrastructure observability and logging ecosystem. Deployed Prometheus and Grafana for real-time dashboards and proactive server alerting.',
     images: [
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=350&fit=crop',
       'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=500&h=350&fit=crop',
       'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=500&h=350&fit=crop'
     ],
-    tags: ['Prometheus', 'Grafana', 'ELK', 'Python'],
-    category: 'cloud',
+    tags: ['Prometheus', 'Grafana', 'Loki', 'Python'],
+    category: 'devops',
     link: '#'
   },
-  {
-    title: 'Serverless API Gateway',
-    description: 'Designed serverless architecture using AWS Lambda and API Gateway reducing costs by 60%.',
-    images: [
-      'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=350&fit=crop'
-    ],
-    tags: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'CloudFormation'],
-    category: 'cloud',
-    link: '#'
-  }
+  // {
+  //   title: 'Serverless API Gateway',
+  //   description: 'Designed serverless architecture using AWS Lambda and API Gateway reducing costs by 60%.',
+  //   images: [
+  //     'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500&h=350&fit=crop',
+  //     'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=350&fit=crop',
+  //     'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=350&fit=crop'
+  //   ],
+  //   tags: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'CloudFormation'],
+  //   category: 'cloud',
+  //   link: '#'
+  // }
 ]
 
 const filteredProjects = ref(projects)
@@ -176,7 +177,7 @@ const setFilter = (filterId) => {
                 {{ tag }}
               </span>
             </div>
-            <a :href="project.link" class="portfolio__item-link">
+            <a href="#" @click.prevent="emit('view-project', project)" class="portfolio__item-link">
               View Project
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>

@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import NavBar from '@/components/NavBar.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import AboutSection from '@/components/AboutSection.vue'
@@ -8,12 +9,25 @@ import ContactSection from '@/components/ContactSection.vue'
 import FooterSection from '@/components/FooterSection.vue'
 import Ribbons from '@/components/Ribbons/Ribbons.vue'
 import ClickSpark from '@/components/ClickSpark/ClickSpark.vue'
+import ProjectDetail from '@/components/ProjectDetail.vue'
+
+const activeProject = ref(null)
 
 const scrollTo = (id) => {
   const el = document.getElementById(id)
   if (el) {
     el.scrollIntoView({ behavior: 'smooth' })
   }
+}
+
+const openProject = (project) => {
+  activeProject.value = project
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const closeProject = () => {
+  activeProject.value = null
+  setTimeout(() => scrollTo('portfolio'), 100)
 }
 </script>
 
@@ -42,17 +56,27 @@ const scrollTo = (id) => {
         />
       </div>
 
-      <NavBar />
+      <transition name="fade" mode="out-in">
+        <ProjectDetail 
+          v-if="activeProject" 
+          :project="activeProject" 
+          @back="closeProject" 
+        />
+        
+        <div v-else class="page-wrapper">
+          <NavBar />
 
-      <main>
-        <HeroSection @scroll-to="scrollTo" />
-        <AboutSection />
-        <SkillsSection />
-        <PortfolioSection />
-        <ContactSection />
-      </main>
+          <main>
+            <HeroSection @scroll-to="scrollTo" />
+            <AboutSection />
+            <SkillsSection />
+            <PortfolioSection @view-project="openProject" />
+            <ContactSection />
+          </main>
 
-      <FooterSection />
+          <FooterSection />
+        </div>
+      </transition>
     </div>
   </ClickSpark>
 </template>
@@ -74,5 +98,24 @@ const scrollTo = (id) => {
 main {
   position: relative;
   z-index: 1;
+}
+
+.page-wrapper {
+  width: 100%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>

@@ -23,6 +23,7 @@ icons=(
   "bash/bash-original"
   "python/python-original"
   "vuejs/vuejs-original"
+  "debian/debian-original"
 )
 
 for icon in "${icons[@]}"; do
