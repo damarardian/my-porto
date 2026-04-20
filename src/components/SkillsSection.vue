@@ -9,12 +9,13 @@ const skillCategories = [
     glowColor: '170 80 60',
     colors: ['#00d4aa', '#0099ff', '#00d4aa'],
     skills: [
-      { name: 'Docker', level: 95 },
-      { name: 'Kubernetes', level: 88 },
-      { name: 'AWS / GCP', level: 85 },
-      { name: 'Terraform', level: 82 },
-      { name: 'Ansible', level: 80 },
-      { name: 'Linux Admin', level: 92 }
+      { name: 'Docker', icon: 'docker/docker-original' },
+      { name: 'Kubernetes', icon: 'kubernetes/kubernetes-plain' },
+      { name: 'AWS', icon: 'amazonwebservices/amazonwebservices-original-wordmark' },
+      { name: 'GCP', icon: 'googlecloud/googlecloud-original' },
+      { name: 'Terraform', icon: 'terraform/terraform-original' },
+      { name: 'Ansible', icon: 'ansible/ansible-original' },
+      { name: 'Linux', icon: 'linux/linux-original' }
     ]
   },
   {
@@ -23,12 +24,12 @@ const skillCategories = [
     glowColor: '210 80 60',
     colors: ['#0099ff', '#38bdf8', '#0099ff'],
     skills: [
-      { name: 'Jenkins', level: 90 },
-      { name: 'GitHub Actions', level: 92 },
-      { name: 'GitLab CI', level: 88 },
-      { name: 'Prometheus', level: 85 },
-      { name: 'Grafana', level: 87 },
-      { name: 'ELK Stack', level: 78 }
+      { name: 'Jenkins', icon: 'jenkins/jenkins-original' },
+      { name: 'GitHub Actions', icon: 'github/github-original' },
+      { name: 'GitLab CI', icon: 'gitlab/gitlab-original' },
+      { name: 'Prometheus', icon: 'prometheus/prometheus-original' },
+      { name: 'Grafana', icon: 'grafana/grafana-original' },
+      { name: 'ELK Stack', icon: 'elasticsearch/elasticsearch-original' }
     ]
   },
   {
@@ -37,12 +38,12 @@ const skillCategories = [
     glowColor: '260 80 70',
     colors: ['#c084fc', '#8978ff', '#c084fc'],
     skills: [
-      { name: 'PHP 8.x', level: 95 },
-      { name: 'Laravel', level: 93 },
-      { name: 'MySQL', level: 90 },
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'Redis', level: 88 },
-      { name: 'REST API', level: 92 }
+      { name: 'PHP 8.x', icon: 'php/php-original' },
+      { name: 'Laravel', icon: 'laravel/laravel-original' },
+      { name: 'MySQL', icon: 'mysql/mysql-original' },
+      { name: 'PostgreSQL', icon: 'postgresql/postgresql-original' },
+      { name: 'Redis', icon: 'redis/redis-original' },
+      { name: 'Postman', icon: 'postman/postman-original' }
     ]
   },
   {
@@ -51,12 +52,12 @@ const skillCategories = [
     glowColor: '35 80 60',
     colors: ['#ffaa00', '#f472b6', '#ffaa00'],
     skills: [
-      { name: 'Git', level: 95 },
-      { name: 'Nginx', level: 90 },
-      { name: 'Bash Scripting', level: 88 },
-      { name: 'Python', level: 75 },
-      { name: 'Vue.js', level: 78 },
-      { name: 'Networking', level: 82 }
+      { name: 'Git', icon: 'git/git-original' },
+      { name: 'Nginx', icon: 'nginx/nginx-original' },
+      { name: 'Bash', icon: 'bash/bash-original' },
+      { name: 'Python', icon: 'python/python-original' },
+      { name: 'Vue.js', icon: 'vuejs/vuejs-original' },
+      { name: 'Ubuntu', icon: 'ubuntu/ubuntu-plain' }
     ]
   }
 ]
@@ -102,13 +103,15 @@ const skillCategories = [
             </div>
 
             <div class="skills__list">
-              <span
+              <div
                 v-for="(skill, idx) in category.skills"
                 :key="idx"
                 class="skills__tag"
+                :title="skill.name"
               >
-                {{ skill.name }}
-              </span>
+                <img :src="`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.icon}.svg`" :alt="skill.name" class="skills__tag-icon" />
+                <span class="skills__tag-name">{{ skill.name }}</span>
+              </div>
             </div>
           </div>
         </BorderGlow>
@@ -160,23 +163,40 @@ const skillCategories = [
 }
 
 .skills__tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 8px 16px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  font-family: var(--font-mono);
   transition: all var(--transition-fast);
   cursor: default;
 }
 
+.skills__tag-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.skills__tag-name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
 .skills__tag:hover {
   border-color: var(--color-accent-primary);
-  color: var(--color-accent-primary);
   background: rgba(0, 212, 170, 0.05);
   box-shadow: 0 0 15px rgba(0, 212, 170, 0.1);
   transform: translateY(-2px);
+}
+
+.skills__tag:hover .skills__tag-name {
+  color: var(--color-accent-primary);
 }
 
 @media (max-width: 768px) {

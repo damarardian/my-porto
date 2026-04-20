@@ -18,7 +18,7 @@ onMounted(() => {
         if (entry.isIntersecting) {
           isVisible.value = true
           setTimeout(() => {
-            counterValues.value = { years: 5, projects: 50, clients: 30, uptime: 99 }
+            counterValues.value = { years: 1, projects: 7, clients: 4, uptime: 99 }
           }, 500)
         }
       })
