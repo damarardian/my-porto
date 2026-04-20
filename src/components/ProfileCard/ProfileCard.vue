@@ -314,28 +314,7 @@ onUnmounted(() => {
 }
 
 .pc-card-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: -10px;
-  background: inherit;
-  background-position: inherit;
-  border-radius: inherit;
-  transition: all 0.5s ease;
-  filter: contrast(2) saturate(2) blur(36px);
-  transform: scale(0.8) translate3d(0, 0, 0.1px);
-  background-size: 100% 100%;
-  background-image: var(--behind-gradient);
-}
-
-.pc-card-wrapper:hover,
-.pc-card-wrapper.active {
-  --card-opacity: 1;
-}
-
-.pc-card-wrapper:hover::before,
-.pc-card-wrapper.active::before {
-  filter: contrast(1) saturate(2) blur(40px) opacity(1);
-  transform: scale(0.9) translate3d(0, 0, 0.1px);
+  display: none;
 }
 
 .pc-card {
@@ -579,7 +558,7 @@ onUnmounted(() => {
   position: absolute;
   inset: 0;
   z-index: 1;
-  backdrop-filter: blur(30px);
+  /* backdrop-filter: blur(30px); Removed to fix hardware flickering */
   mask: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
@@ -599,8 +578,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(30px);
+  background: rgba(0, 0, 0, 0.6); /* Darkened to counteract lack of blur */
+  /* backdrop-filter: blur(30px); Removed to fix hardware flickering */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 12px 14px;
@@ -658,8 +637,8 @@ onUnmounted(() => {
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
-  background: transparent;
+  /* backdrop-filter: blur(10px); Removed to fix hardware flickering */
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .pc-contact-btn:hover {
