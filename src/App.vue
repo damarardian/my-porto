@@ -85,6 +85,8 @@ const closeProject = () => {
 .app {
   position: relative;
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .app__bg-ribbons {
@@ -102,6 +104,7 @@ main {
 
 .page-wrapper {
   width: 100%;
+  overflow-x: hidden;
 }
 
 .fade-enter-active,

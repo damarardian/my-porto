@@ -321,7 +321,16 @@ import profileImg from '@/assets/profile.png'
   color: var(--color-text-muted);
   font-size: var(--font-size-xs);
   font-family: var(--font-mono);
-  animation: float 3s ease-in-out infinite;
+  animation: float-center 3s ease-in-out infinite;
+}
+
+@keyframes float-center {
+  0%, 100% {
+    transform: translate(-50%, 0px);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
 }
 
 .hero__scroll-line {
