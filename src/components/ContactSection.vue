@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import ScrollFloat from '@/components/ScrollFloat/ScrollFloat.vue'
 
 const form = ref({
@@ -11,15 +11,82 @@ const form = ref({
 
 const isSubmitting = ref(false)
 const submitted = ref(false)
+const errorMessage = ref('')
 
-const handleSubmit = () => {
+onMounted(() => {
+  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+  if (siteKey && siteKey !== 'MASUKKAN_SITE_KEY_RECAPTCHA_ANDA_DISINI') {
+    const script = document.createElement('script')
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
+    script.async = true
+    script.defer = true
+    document.head.appendChild(script)
+  }
+})
+
+const sendToEmailJS = async (token) => {
+  const payload = {
+    service_id: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    template_id: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    user_id: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+    template_params: {
+      from_name: form.value.name,
+      reply_to: form.value.email,
+      subject: form.value.subject,
+      message: form.value.message,
+      'g-recaptcha-response': token
+    }
+  }
+
+  const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to send message.')
+  }
+}
+
+const handleSubmit = async () => {
   isSubmitting.value = true
-  setTimeout(() => {
-    isSubmitting.value = false
-    submitted.value = true
-    form.value = { name: '', email: '', subject: '', message: '' }
-    setTimeout(() => { submitted.value = false }, 3000)
-  }, 1500)
+  errorMessage.value = ''
+  
+  try {
+    const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+    if (window.grecaptcha && siteKey && siteKey !== 'MASUKKAN_SITE_KEY_RECAPTCHA_ANDA_DISINI') {
+      window.grecaptcha.ready(() => {
+        window.grecaptcha.execute(siteKey, { action: 'submit' }).then(async (token) => {
+          try {
+            await sendToEmailJS(token)
+            handleSuccess()
+          } catch (err) {
+            handleError()
+          }
+        })
+      })
+    } else {
+      // Fallback if reCAPTCHA is not configured
+      await sendToEmailJS('no-captcha-token')
+      handleSuccess()
+    }
+  } catch (error) {
+    handleError()
+  }
+}
+
+const handleSuccess = () => {
+  isSubmitting.value = false
+  submitted.value = true
+  form.value = { name: '', email: '', subject: '', message: '' }
+  setTimeout(() => { submitted.value = false }, 4000)
+}
+
+const handleError = () => {
+  isSubmitting.value = false
+  errorMessage.value = 'Oops, sesuatu terjadi! Pastikan API Key di file .env sudah diisi.'
+  setTimeout(() => { errorMessage.value = '' }, 5000)
 }
 
 const contactInfo = [
@@ -38,8 +105,8 @@ const contactInfo = [
   {
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
     label: 'Phone',
-    value: '+62 812 3456 7890',
-    link: 'tel:+6281234567890'
+    value: '+62 851-7985-7083',
+    link: 'tel:+6285179857083'
   }
 ]
 </script>
@@ -139,6 +206,10 @@ const contactInfo = [
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </span>
           </button>
+          
+          <div v-if="errorMessage" class="contact__form-error">
+            {{ errorMessage }}
+          </div>
         </form>
       </div>
     </div>
@@ -291,6 +362,14 @@ a.contact__info-value:hover {
 .contact__form-submit:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.contact__form-error {
+  margin-top: var(--space-md);
+  color: #ff4a4a;
+  font-size: var(--font-size-sm);
+  text-align: center;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
