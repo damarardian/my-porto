@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import CardSwap from '@/components/CardSwap/CardSwap.vue'
 import ShinyText from '@/components/ShinyText/ShinyText.vue'
+import profileImg from '@/assets/profile.png'
 
 const activeFilter = ref('all')
 const emit = defineEmits(['view-project'])
@@ -16,35 +17,35 @@ const filters = [
 const projects = [
   {
     title: 'On Premise Infrastructure',
-    description: 'Architected and deployed scalable on-premise infrastructure using Proxmox and Kubernetes. Configured high-availability clusters and automated environment provisioning via Terraform.',
+    description: 'Architected and deployed scalable on-premise infrastructure using Kubernetes. Configured high-availability clusters and automated environment provisioning via Terraform.',
     images: [
-      'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=350&fit=crop'
+      '/images/projects/pods kubernetes.png',
+      '/images/projects/p1_2.webp',
+      '/images/projects/p1_3.webp'
     ],
     tags: ['Kubernetes', 'Docker', 'Terraform', 'Proxmox'],
     category: 'devops',
     link: '#'
   },
-  {
-    title: 'Personal Project',
-    description: 'Developed a custom high-performance REST API as a personal sandbox project. Leveraged PHP 8 and Laravel alongside Redis caching to deliver fast data processing.',
-    images: [
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=350&fit=crop'
-    ],
-    tags: ['Laravel', 'PHP 8', 'Redis', 'MySQL'],
-    category: 'php',
-    link: '#'
-  },
+  // {
+  //   title: 'Personal Project',
+  //   description: 'Developed a custom high-performance REST API as a personal sandbox project. Leveraged PHP 8 and Laravel alongside Redis caching to deliver fast data processing.',
+  //   images: [
+  //     '/images/projects/p2_1.webp',
+  //     '/images/projects/p2_2.webp',
+  //     '/images/projects/p2_3.webp'
+  //   ],
+  //   tags: ['Laravel', 'PHP 8', 'Redis', 'MySQL'],
+  //   category: 'php',
+  //   link: '#'
+  // },
   {
     title: 'CI/CD Pipeline Automation',
     description: 'Designed and implemented robust end-to-end continuous integration and deployment workflows. Integrated Docker, Jenkins, and GitHub Actions to reduce manual deployment errors.',
     images: [
-      'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=500&h=350&fit=crop'
+      '/images/projects/argocd.png',
+      // '/images/projects/grafana.png',
+      '/images/projects/headlamp.png'
     ],
     tags: ['Jenkins', 'GitHub Actions', 'Docker'],
     category: 'cloud',
@@ -54,9 +55,9 @@ const projects = [
     title: 'Freelance Project',
     description: 'Delivered a tailored multi-tenant SaaS application for a freelance client. Executed isolated PostgreSQL database handling connected to a responsive Vue.js frontend.',
     images: [
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=500&h=350&fit=crop'
+      '/images/projects/p2_3.webp',
+      '/images/projects/p4_2.webp',
+      '/images/projects/p4_3.webp'
     ],
     tags: ['Laravel', 'PostgreSQL', 'Redis', 'Vue.js'],
     category: 'php',
@@ -66,11 +67,11 @@ const projects = [
     title: 'Infrastructure Monitoring',
     description: 'Established a centralized infrastructure observability and logging ecosystem. Deployed Prometheus and Grafana for real-time dashboards and proactive server alerting.',
     images: [
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=500&h=350&fit=crop',
-      'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=500&h=350&fit=crop'
+      '/images/projects/grafana.png',
+      '/images/projects/p5_2.webp',
+      '/images/projects/p4_3.webp'
     ],
-    tags: ['Prometheus', 'Grafana', 'Loki', 'Python'],
+    tags: ['Prometheus', 'Grafana', 'Loki', 'Headlamp'],
     category: 'devops',
     link: '#'
   },
