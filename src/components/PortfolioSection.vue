@@ -45,7 +45,7 @@ const projects = [
     images: [
       '/images/projects/argocd.png',
       // '/images/projects/grafana.png',
-      '/images/projects/headlamp.png'
+      '/images/projects/GitlabCI.png'
     ],
     tags: ['Jenkins', 'GitHub Actions', 'Docker'],
     category: 'cloud',
@@ -68,7 +68,7 @@ const projects = [
     description: 'Established a centralized infrastructure observability and logging ecosystem. Deployed Prometheus and Grafana for real-time dashboards and proactive server alerting.',
     images: [
       '/images/projects/grafana.png',
-      '/images/projects/p5_2.webp',
+      '/images/projects/headlamp.png',
       '/images/projects/p4_3.webp'
     ],
     tags: ['Prometheus', 'Grafana', 'Loki', 'Headlamp'],

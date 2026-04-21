@@ -25,27 +25,18 @@
       </div>
     </div>
 
-    <!-- 3D Interactive Gallery -->
-    <div class="project-detail__gallery" @mousemove="handleMouseMove" @mouseleave="handleMouseLeave" ref="galleryRef">
-      <div 
-        v-for="(img, idx) in project.images" 
-        :key="idx" 
-        class="gallery-card"
-        ref="cardRefs"
-      >
-        <div class="gallery-card__inner">
-          <div class="gallery-card__glow"></div>
-          <img :src="img" :alt="`${project.title} screenshot ${idx + 1}`" crossorigin="anonymous" />
-        </div>
-      </div>
+    <!-- WebGL-Style Circular Gallery -->
+    <div class="project-detail__gallery-wrapper">
+      <CircularGallery :items="project.images" :itemWidth="300" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 import ShinyText from '@/components/ShinyText/ShinyText.vue'
+import CircularGallery from '@/components/CircularGallery.vue'
 
 const props = defineProps({
   project: {
@@ -57,48 +48,6 @@ const props = defineProps({
 defineEmits(['back'])
 
 const containerRef = ref(null)
-const galleryRef = ref(null)
-const cardRefs = ref([])
-
-let mouseX = 0
-let mouseY = 0
-let rafId = null
-
-const handleMouseMove = (e) => {
-  if (!galleryRef.value) return
-  const rect = galleryRef.value.getBoundingClientRect()
-  const centerX = rect.left + rect.width / 2
-  const centerY = rect.top + rect.height / 2
-  
-  mouseX = ((e.clientX - centerX) / (rect.width / 2)) * 15
-  mouseY = ((e.clientY - centerY) / (rect.height / 2)) * -15
-}
-
-const handleMouseLeave = () => {
-  mouseX = 0
-  mouseY = 0
-}
-
-const animate = () => {
-  if (cardRefs.value.length > 0) {
-    cardRefs.value.forEach((card, idx) => {
-      if (!card) return
-      
-      const depth = (idx % 2 === 0 ? 1 : -1) * 2;
-      
-      gsap.to(card, {
-        rotateY: mouseX * 0.8,
-        rotateX: mouseY * 0.8,
-        x: mouseX * depth,
-        y: mouseY * depth,
-        duration: 1.2,
-        ease: 'power3.out',
-        overwrite: 'auto'
-      })
-    })
-  }
-  rafId = requestAnimationFrame(animate)
-}
 
 onMounted(() => {
   window.scrollTo({ top: 0, behavior: 'instant' })
@@ -107,17 +56,6 @@ onMounted(() => {
     { opacity: 0, y: 50 }, 
     { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
   )
-  
-  gsap.fromTo(cardRefs.value,
-    { opacity: 0, y: 100, rotateX: 30, z: -200 },
-    { opacity: 1, y: 0, rotateX: 0, z: 0, duration: 1.2, stagger: 0.15, ease: 'expo.out', delay: 0.2 }
-  )
-  
-  rafId = requestAnimationFrame(animate)
-})
-
-onUnmounted(() => {
-  if (rafId) cancelAnimationFrame(rafId)
 })
 </script>
 
@@ -210,73 +148,12 @@ onUnmounted(() => {
   font-family: var(--font-mono);
 }
 
-/* 3D Gallery */
-.project-detail__gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--space-2xl);
-  max-width: 1200px;
+/* 3D Gallery Wrapper */
+.project-detail__gallery-wrapper {
   margin: 0 auto;
-  perspective: 1500px;
-  padding: 20px;
-}
-
-.gallery-card {
-  transform-style: preserve-3d;
-  will-change: transform;
-  z-index: 1;
-}
-
-.gallery-card:nth-child(1) { 
-  grid-column: 1 / -1; 
-}
-.gallery-card:nth-child(1) .gallery-card__inner { 
-  height: 60vh; 
-  min-height: 400px;
-}
-
-.gallery-card__inner {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  border-radius: var(--radius-2xl);
+  max-width: 100vw;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-  transform: translateZ(30px);
-  transition: border-color 0.4s ease;
-  background: var(--color-bg-card);
-}
-
-.gallery-card__glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,212,170,0.15) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.gallery-card__inner:hover {
-  border-color: rgba(0, 212, 170, 0.5);
-}
-
-.gallery-card__inner:hover .gallery-card__glow {
-  opacity: 1;
-}
-
-.gallery-card__inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: brightness(0.9);
-}
-
-.gallery-card__inner:hover img {
-  transform: scale(1.03);
-  filter: brightness(1.1);
+  position: relative;
 }
 
 @media (max-width: 1024px) {
@@ -303,23 +180,6 @@ onUnmounted(() => {
   
   .project-detail__tags {
     justify-content: flex-start;
-  }
-}
-
-@media (max-width: 768px) {
-  .project-detail__gallery {
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    padding: 0;
-  }
-
-  .gallery-card:nth-child(1) .gallery-card__inner {
-    height: 350px;
-    min-height: auto;
-  }
-  
-  .gallery-card__inner {
-    height: 280px;
   }
 }
 </style>
