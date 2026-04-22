@@ -247,6 +247,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: left center;
   pointer-events: none;
   filter: brightness(0.85);
   transition: filter 0.5s ease, transform 0.5s ease;

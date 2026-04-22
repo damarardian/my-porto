@@ -30,9 +30,9 @@ const sendToEmailJS = async (token) => {
     template_id: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
     user_id: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
     template_params: {
-      from_name: form.value.name,
-      reply_to: form.value.email,
-      subject: form.value.subject,
+      name: form.value.name,
+      email: form.value.email,
+      title: form.value.subject,
       message: form.value.message,
       'g-recaptcha-response': token
     }
