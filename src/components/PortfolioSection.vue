@@ -145,7 +145,7 @@ const setFilter = (filterId) => {
             >
               <template #card-0>
                 <div class="portfolio__swap-card">
-                  <img :src="project.images[0]" :alt="project.title + ' preview 1'" />
+                  <img :src="project.images[0]" :alt="project.title + ' preview 1'" loading="lazy" />
                   <div class="portfolio__swap-overlay">
                     <span class="portfolio__swap-label">Preview 1</span>
                   </div>
@@ -153,7 +153,7 @@ const setFilter = (filterId) => {
               </template>
               <template #card-1>
                 <div class="portfolio__swap-card">
-                  <img :src="project.images[1]" :alt="project.title + ' preview 2'" />
+                  <img :src="project.images[1]" :alt="project.title + ' preview 2'" loading="lazy" />
                   <div class="portfolio__swap-overlay"> 
                     <span class="portfolio__swap-label">Preview 2</span>
                   </div>
@@ -161,7 +161,7 @@ const setFilter = (filterId) => {
               </template>
               <template #card-2>
                 <div class="portfolio__swap-card">
-                  <img :src="project.images[2]" :alt="project.title + ' preview 3'" />
+                  <img :src="project.images[2]" :alt="project.title + ' preview 3'" loading="lazy" />
                   <div class="portfolio__swap-overlay">
                     <span class="portfolio__swap-label">Preview 3</span>
                   </div>

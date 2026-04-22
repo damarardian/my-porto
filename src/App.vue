@@ -1,15 +1,17 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, defineAsyncComponent } from 'vue'
 import NavBar from '@/components/NavBar.vue'
 import HeroSection from '@/components/HeroSection.vue'
-import AboutSection from '@/components/AboutSection.vue'
-import SkillsSection from '@/components/SkillsSection.vue'
-import PortfolioSection from '@/components/PortfolioSection.vue'
-import ContactSection from '@/components/ContactSection.vue'
-import FooterSection from '@/components/FooterSection.vue'
 import Ribbons from '@/components/Ribbons/Ribbons.vue'
 import ClickSpark from '@/components/ClickSpark/ClickSpark.vue'
-import ProjectDetail from '@/components/ProjectDetail.vue'
+
+// Lazy-loaded components below the fold to speed up initial First Contentful Paint
+const AboutSection = defineAsyncComponent(() => import('@/components/AboutSection.vue'))
+const SkillsSection = defineAsyncComponent(() => import('@/components/SkillsSection.vue'))
+const PortfolioSection = defineAsyncComponent(() => import('@/components/PortfolioSection.vue'))
+const ContactSection = defineAsyncComponent(() => import('@/components/ContactSection.vue'))
+const FooterSection = defineAsyncComponent(() => import('@/components/FooterSection.vue'))
+const ProjectDetail = defineAsyncComponent(() => import('@/components/ProjectDetail.vue'))
 
 const activeProject = ref(null)
 

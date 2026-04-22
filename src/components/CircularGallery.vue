@@ -23,7 +23,7 @@
           :style="getItemStyle(index)"
         >
           <div class="circular-gallery-item-inner">
-            <img :src="item" alt="Gallery item" crossorigin="anonymous" />
+            <img :src="item" alt="Gallery item" crossorigin="anonymous" loading="lazy" />
             <div class="circular-gallery-item-glow"></div>
           </div>
         </div>

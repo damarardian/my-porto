@@ -159,7 +159,9 @@ const swap = () => {
   tlRef.value = tl;
 
   tl.to(elFront, {
-    y: '+=500',
+    x: '+=260',
+    opacity: 0.5,
+    scale: 0.9,
     duration: config.value.durDrop,
     ease: config.value.ease
   });
@@ -198,11 +200,13 @@ const swap = () => {
     undefined,
     'return'
   );
-  tl.set(elFront, { x: backSlot.x, z: backSlot.z }, 'return');
+  tl.set(elFront, { y: backSlot.y, z: backSlot.z }, 'return');
   tl.to(
     elFront,
     {
-      y: backSlot.y,
+      x: backSlot.x,
+      opacity: 1,
+      scale: 1,
       duration: config.value.durReturn,
       ease: config.value.ease
     },
