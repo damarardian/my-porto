@@ -55,7 +55,7 @@ const projects = [
     title: 'Freelance Project',
     description: 'Delivered a tailored multi-tenant SaaS application for a freelance client. Executed isolated PostgreSQL database handling connected to a responsive Vue.js frontend.',
     images: [
-      '/images/projects/p2_3.webp',
+      '/images/projects/nabung_presentation.png',
       '/images/projects/p4_2.webp',
       '/images/projects/p4_3.webp'
     ],
@@ -67,9 +67,9 @@ const projects = [
     title: 'Infrastructure Monitoring',
     description: 'Established a centralized infrastructure observability and logging ecosystem. Deployed Prometheus and Grafana for real-time dashboards and proactive server alerting.',
     images: [
-      '/images/projects/grafana.png',
+      '/images/projects/grafana-k8s.png',
       '/images/projects/headlamp.png',
-      '/images/projects/p4_3.webp'
+      '/images/projects/headlamp-maps.png'
     ],
     tags: ['Prometheus', 'Grafana', 'Loki', 'Headlamp'],
     category: 'devops',
@@ -142,28 +142,13 @@ const setFilter = (filterId) => {
               :pause-on-hover="true"
               :skew-amount="4"
               easing="elastic"
+              :totalCards="Math.min(project.images.length, 3)"
             >
-              <template #card-0>
+              <template v-for="(img, i) in project.images.slice(0, 3)" :key="i" #[`card-${i}`]>
                 <div class="portfolio__swap-card">
-                  <img :src="project.images[0]" :alt="project.title + ' preview 1'" loading="lazy" />
+                  <img :src="img" :alt="project.title + ' preview ' + (i + 1)" loading="lazy" />
                   <div class="portfolio__swap-overlay">
-                    <span class="portfolio__swap-label">Preview 1</span>
-                  </div>
-                </div>
-              </template>
-              <template #card-1>
-                <div class="portfolio__swap-card">
-                  <img :src="project.images[1]" :alt="project.title + ' preview 2'" loading="lazy" />
-                  <div class="portfolio__swap-overlay"> 
-                    <span class="portfolio__swap-label">Preview 2</span>
-                  </div>
-                </div>
-              </template>
-              <template #card-2>
-                <div class="portfolio__swap-card">
-                  <img :src="project.images[2]" :alt="project.title + ' preview 3'" loading="lazy" />
-                  <div class="portfolio__swap-overlay">
-                    <span class="portfolio__swap-label">Preview 3</span>
+                    <span class="portfolio__swap-label">Preview {{ i + 1 }}</span>
                   </div>
                 </div>
               </template>

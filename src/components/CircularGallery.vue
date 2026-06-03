@@ -43,7 +43,11 @@ const props = defineProps({
   },
   itemWidth: {
     type: Number,
-    default: 300
+    default: 500
+  },
+  itemHeight: {
+    type: Number,
+    default: 320
   },
   itemSpacing: {
     type: Number,
@@ -80,7 +84,8 @@ const theta = computed(() => {
 const getItemStyle = (index) => {
   const rY = index * theta.value
   return {
-    width: `${props.itemWidth}px`,
+    '--item-width': `${props.itemWidth}px`,
+    '--item-height': `${props.itemHeight}px`,
     transform: `rotateY(${rY}deg) translateZ(${radius.value}px)`
   }
 }
@@ -202,10 +207,10 @@ onUnmounted(() => {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -200px;
-  /* Centering adjustment handled tightly */
-  margin-left: calc(var(--item-width, -150px)); 
-  height: 400px;
+  width: var(--item-width, 500px);
+  height: var(--item-height, 320px);
+  margin-left: calc(var(--item-width, 500px) / -2);
+  margin-top: calc(var(--item-height, 320px) / -2);
   transform-style: preserve-3d;
   /* Add slight backface hidden for performance if needed */
   backface-visibility: hidden;
@@ -258,10 +263,4 @@ img {
   transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-  .circular-gallery-item {
-    margin-top: -150px;
-    height: 300px;
-  }
-}
 </style>

@@ -8,6 +8,7 @@ import ClickSpark from '@/components/ClickSpark/ClickSpark.vue'
 // Lazy-loaded components below the fold to speed up initial First Contentful Paint
 const AboutSection = defineAsyncComponent(() => import('@/components/AboutSection.vue'))
 const SkillsSection = defineAsyncComponent(() => import('@/components/SkillsSection.vue'))
+const ExperienceSection = defineAsyncComponent(() => import('@/components/ExperienceSection.vue'))
 const PortfolioSection = defineAsyncComponent(() => import('@/components/PortfolioSection.vue'))
 const ContactSection = defineAsyncComponent(() => import('@/components/ContactSection.vue'))
 const FooterSection = defineAsyncComponent(() => import('@/components/FooterSection.vue'))
@@ -72,6 +73,7 @@ const closeProject = () => {
             <HeroSection @scroll-to="scrollTo" />
             <AboutSection />
             <SkillsSection />
+            <ExperienceSection />
             <PortfolioSection @view-project="openProject" />
             <ContactSection />
           </main>

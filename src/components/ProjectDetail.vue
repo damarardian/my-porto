@@ -27,7 +27,7 @@
 
     <!-- WebGL-Style Circular Gallery -->
     <div class="project-detail__gallery-wrapper">
-      <CircularGallery :items="project.images" :itemWidth="300" />
+      <CircularGallery :items="project.images" />
     </div>
   </div>
 </template>
