@@ -34,7 +34,7 @@ import profileImg from '@/assets/profile.png'
             :show-user-info="true"
             :enable-tilt="true"
             :show-behind-gradient="false"
-            inner-gradient="linear-gradient(145deg, rgba(20,20,30,0.9) 0%, rgba(15,15,25,0.95) 100%)"
+            inner-gradient="linear-gradient(145deg, rgba(25,25,25,0.9) 0%, rgba(10,10,10,0.95) 100%)"
             behind-gradient="none"
           />
         </div>
@@ -128,7 +128,7 @@ import profileImg from '@/assets/profile.png'
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.8) 70%, rgba(10,10,15,1) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,1) 100%);
   z-index: 1;
 }
 
@@ -160,7 +160,7 @@ import profileImg from '@/assets/profile.png'
   max-height: 420px !important;
   /* Remove colorful background, keep dark with subtle border */
   background-image: none !important;
-  background-color: #0d0d18 !important;
+  background-color: #050505 !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -186,8 +186,8 @@ import profileImg from '@/assets/profile.png'
 
 /* Clean inner background */
 :deep(.pc-inside) {
-  background-color: rgba(10, 10, 20, 0.95) !important;
-  background-image: linear-gradient(145deg, rgba(20,20,30,0.9) 0%, rgba(12,12,22,0.95) 100%) !important;
+  background-color: rgba(10, 10, 10, 0.95) !important;
+  background-image: linear-gradient(145deg, rgba(20,20,20,0.9) 0%, rgba(5,5,5,0.95) 100%) !important;
 }
 
 /* Make avatar show normally without color blending */

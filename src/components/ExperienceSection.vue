@@ -16,15 +16,15 @@ const experiences = [
     company: 'Gunadarma University',
     period: 'Okt 2023 - Dec 2025',
     description: 'As an IT staff at the Information Systems Lab, I managed hardware/software maintenance and network troubleshooting for seamless operations. Alongside supporting practical sessions, I accurately handled large-scale data entry for hundreds of student records to optimize administration',
-    tags: ['Docker', 'Terraform', 'MySQL', 'Vue.js']
+    tags: ['MySQL', 'Vue.js', 'Linux', 'PHP', 'UI/UX', 'Programming Logic']
   },
   {
     id: 3,
-    title: 'Forensic Digital',
+    title: 'Forensic Digital Intern',
     company: 'Direktorat Jenderal Pajak',
     period: 'Nov 2024 - Jan 2020',
-    description: 'Maintained Linux servers, managed backups, and provided technical support for enterprise clients. Configured monitoring tools to ensure 99.9% uptime.',
-    tags: ['Linux', 'Bash', 'Networking', 'Monitoring']
+    description: 'Explored digital forensics in tax investigations to detect evidence manipulation. I utilized FTK Imager for data acquisition, applied hashing to verify data integrity, and analyzed metadata to validate file authenticity. This hands-on experience significantly deepened my understanding of compliance and investigative workflows.',
+    tags: ['Tax Management', 'FTK Imager', 'Autopsy', 'Hashing', 'Metadata']
   }
 ]
 </script>

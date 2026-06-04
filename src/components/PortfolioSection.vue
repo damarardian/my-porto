@@ -10,7 +10,7 @@ const emit = defineEmits(['view-project'])
 const filters = [
   { id: 'all', label: 'All Projects' },
   { id: 'devops', label: 'DevOps' },
-  { id: 'php', label: 'PHP/Laravel' },
+  { id: 'php', label: 'Website Projects' },
   { id: 'cloud', label: 'Cloud' }
 ]
 
@@ -19,11 +19,31 @@ const projects = [
     title: 'On Premise Infrastructure',
     description: 'Architected and deployed scalable on-premise & VM infrastructure using Kubernetes. Configured high-availability clusters and automated environment provisioning via Terraform.',
     images: [
-      '/images/projects/pods kubernetes.png',
-      '/images/projects/HPA.png',
-      '/images/projects/ESO.png'
+      '/images/projects/kubernetes_nodes.png',
+      '/images/projects/External_secret.png',
+      '/images/projects/locust_testingHPA.jpg'
     ],
-    tags: ['Kubernetes', 'Docker', 'Terraform', 'Proxmox'],
+    sections: [
+      {
+        title: 'Building from the Ground Up',
+        content: 'I built this on-premise infrastructure project entirely from scratch using the Debian operating system. To ensure consistency, standardization, and rapid deployment, I utilized Terraform as an Infrastructure as Code (IaC) provisioning tool to automatically build the Kubernetes cluster, eliminating error-prone manual interventions.',
+        image: '/images/projects/kubernetes_nodes.png',
+        imagePosition: 'right'
+      },
+      {
+        title: 'High Availability & Scaling',
+        content: 'Once the cluster was successfully established, the next challenge was ensuring uninterrupted service (High Availability). I implemented HPA (Horizontal Pod Autoscaler) across every pod running within Kubernetes. With this configuration, the system can dynamically scale the number of pod replicas up or down based on real-time CPU or memory loads.',
+        image: '/images/projects/locust_testingHPA.jpg',
+        imagePosition: 'left'
+      },
+      {
+        title: 'Security & Secret Management',
+        content: 'Security is always a top priority when designing infrastructure. Storing environment variables directly in source code or manifests is highly risky. To mitigate this vulnerability, I set up ESO (External Secrets Operator) as a centralized vault for environment variables. With ESO, all secrets and sensitive credentials are securely managed outside the source code and synchronized directly into the cluster only when needed.',
+        image: '/images/projects/External_secret.png',
+        imagePosition: 'none'
+      }
+    ],
+    tags: ['Kubernetes', 'Docker', 'Terraform', 'Debian', 'HPA', 'ESO'],
     category: 'devops',
     link: '#'
   },
@@ -41,18 +61,37 @@ const projects = [
   // },
   {
     title: 'CI/CD Pipeline Automation',
-    description: 'Designed and implemented robust end-to-end continuous integration and deployment workflows. Integrated Docker, GitLab Runner, and GitHub Actions to reduce manual deployment errors.',
+    description: 'Designed and implemented robust end-to-end continuous integration and deployment workflows. Integrated Docker, GitLab Runner, and ArgoCD to reduce manual deployment errors.',
     images: [
       '/images/projects/argocd.png',
-      // '/images/projects/grafana.png',
       '/images/projects/GitlabCI.png'
     ],
-    tags: ['Jenkins', 'GitHub Actions', 'Docker'],
+    sections: [
+      {
+        title: 'GitLab CI Integration',
+        content: 'I integrated the deployment workflow with the company\'s self-hosted GitLab repository using GitLab CI. This automation streamlines the development process by eliminating the need for developers to build container images manually, significantly reducing human error and saving valuable time.',
+        image: '/images/projects/GitlabCI.png',
+        imagePosition: 'right'
+      },
+      {
+        title: 'Automated Deployment with ArgoCD',
+        content: 'Following the CI pipeline, I implemented ArgoCD to fully automate the image deployment process. By adopting a GitOps approach, ArgoCD continuously monitors the repository and automatically synchronizes the latest container images into the Kubernetes cluster.',
+        image: '/images/projects/argocd.png',
+        imagePosition: 'left'
+      },
+      {
+        title: 'Seamless Implementation',
+        content: 'Both of these tools were meticulously configured and integrated to work seamlessly together. The resulting end-to-end pipeline operates reliably, ensuring continuous delivery and a highly efficient, automated deployment lifecycle.',
+        image: null,
+        imagePosition: 'none'
+      }
+    ],
+    tags: ['GitLab CI', 'ArgoCD'],
     category: 'cloud',
     link: '#'
   },
   {
-    title: 'Freelance Project',
+    title: 'Website Projects',
     description: 'Delivered a tailored multi-tenant SaaS application for a freelance client. Executed isolated PostgreSQL database handling connected to a responsive Vue.js frontend.',
     images: [
       '/images/projects/nabung_presentation.png',
@@ -70,6 +109,26 @@ const projects = [
       '/images/projects/grafana-k8s.png',
       '/images/projects/headlamp.png',
       '/images/projects/headlamp-maps.png'
+    ],
+    sections: [
+      {
+        title: 'Resource Monitoring & Logging',
+        content: 'After deploying the application to the Kubernetes cluster, I implemented a robust observability stack using Prometheus and Grafana to monitor system resources. Additionally, I integrated Loki for centralized log aggregation, ensuring comprehensive visibility across the entire infrastructure.',
+        image: '/images/projects/grafana-k8s.png',
+        imagePosition: 'right'
+      },
+      {
+        title: 'Cluster Visualization with Headlamp',
+        content: 'Beyond Grafana and Prometheus, I deployed Headlamp as an intuitive Kubernetes web UI. This tool provides in-depth monitoring of the Kubernetes cluster itself, allowing me to easily inspect and manage crucial resources such as secrets, Horizontal Pod Autoscalers (HPA), and network configurations.',
+        image: '/images/projects/headlamp.png',
+        imagePosition: 'left'
+      },
+      {
+        title: 'Transitioning to Visual Dashboards',
+        content: 'The implementation of these tools drastically reduced the reliance on manual debugging and CLI-based monitoring. By transitioning to a fully comprehensive visual dashboard ecosystem, the team can now diagnose issues faster, track performance intuitively, and maintain system health with far greater efficiency.',
+        image: '/images/projects/headlamp-maps.png',
+        imagePosition: 'right'
+      }
     ],
     tags: ['Prometheus', 'Grafana', 'Loki', 'Headlamp'],
     category: 'devops',

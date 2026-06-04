@@ -29,6 +29,23 @@
     <div class="project-detail__gallery-wrapper">
       <CircularGallery :items="project.images" />
     </div>
+
+    <!-- Rich Content Sections -->
+    <div v-if="project.sections && project.sections.length > 0" class="project-detail__content">
+      <div 
+        v-for="(section, idx) in project.sections" 
+        :key="idx"
+        :class="['content-section', `content-section--img-${section.imagePosition}`]"
+      >
+        <div class="content-section__text">
+          <h2>{{ section.title }}</h2>
+          <p>{{ section.content }}</p>
+        </div>
+        <div v-if="section.image" class="content-section__image">
+          <img :src="section.image" :alt="section.title" loading="lazy" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -180,6 +197,86 @@ onMounted(() => {
   
   .project-detail__tags {
     justify-content: flex-start;
+  }
+}
+
+/* Rich Content Styles */
+.project-detail__content {
+  max-width: 1000px;
+  margin: var(--space-4xl) auto;
+  padding: 0 var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4xl);
+}
+
+.content-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xl);
+}
+
+.content-section--img-left {
+  flex-direction: row-reverse;
+}
+
+.content-section--img-none .content-section__text {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.content-section__text {
+  flex: 1;
+}
+
+.content-section__text h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+}
+
+.content-section__text p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.content-section__image {
+  flex: 1;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  max-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-section__image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .project-detail__content {
+    gap: var(--space-3xl);
+  }
+  
+  .content-section,
+  .content-section--img-left {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-xl);
+  }
+  
+  .content-section__image {
+    width: 100%;
+    max-height: none;
   }
 }
 </style>

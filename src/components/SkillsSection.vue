@@ -85,7 +85,7 @@ const skillCategories = [
           :edge-sensitivity="20"
           :cone-spread="30"
           :fill-opacity="0.3"
-          background-color="#12121a"
+          background-color="var(--color-bg-card)"
         >
           <div class="skills__card-inner">
             <div class="skills__card-header">

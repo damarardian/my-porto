@@ -47,22 +47,28 @@
         }"
         :transition="effectiveTransition"
       >
-        <div :class="round ? 'p-0 m-0' : 'mb-4 p-5'">
-          <span class="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#0b0b0b]">
-            <span v-html="item.icon" class="text-white text-base flex items-center justify-center [&>svg]:w-4 [&>svg]:h-4"></span>
+        <div v-if="!round" class="mb-4 p-5">
+          <span class="flex items-center justify-center rounded-full h-[28px] w-[28px] bg-[#0b0b0b]">
+            <span v-html="item.icon" class="flex items-center justify-center text-white text-base [&>svg]:w-4 [&>svg]:h-4"></span>
           </span>
         </div>
 
-        <div class="p-5">
-          <div class="mb-1 font-black text-lg text-white">{{ item.title }}</div>
+        <div :class="round ? 'px-4 pb-4' : 'p-5'">
+          <div :class="[
+            'font-black mb-1',
+            round ? 'text-5xl tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[#00d4aa] to-[#0099ff] drop-shadow-sm' : 'text-lg text-white'
+          ]">{{ item.title }}</div>
 
-          <p class="text-sm text-white">{{ item.description }}</p>
+          <p :class="[
+            'text-sm',
+            round ? 'text-[#9898a6] font-medium leading-snug mt-2' : 'text-white'
+          ]">{{ item.description }}</p>
         </div>
       </Motion>
     </Motion>
 
     <div :class="['flex w-full justify-center', round ? 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2' : '']">
-      <div class="mt-4 flex w-[150px] justify-between px-8">
+      <div class="mt-4 flex gap-3">
         <Motion
           v-for="(_, index) in items"
           :key="index"
