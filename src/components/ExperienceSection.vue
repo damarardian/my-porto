@@ -15,7 +15,7 @@ const experiences = [
     title: 'IT staff & Coordinator',
     company: 'Gunadarma University',
     period: 'Okt 2023 - Dec 2025',
-    description: 'As an IT Support at the Information Systems Lab, I managed hardware/software maintenance and network troubleshooting for seamless operations. Alongside supporting practical sessions, I accurately handled large-scale data entry for hundreds of student records to optimize administration',
+    description: 'As an IT staff at the Information Systems Lab, I managed hardware/software maintenance and network troubleshooting for seamless operations. Alongside supporting practical sessions, I accurately handled large-scale data entry for hundreds of student records to optimize administration',
     tags: ['Docker', 'Terraform', 'MySQL', 'Vue.js']
   },
   {

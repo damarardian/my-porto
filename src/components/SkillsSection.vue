@@ -1,6 +1,6 @@
 <script setup>
 import BorderGlow from '@/components/BorderGlow/BorderGlow.vue'
-import GradientText from '@/components/GradientText/GradientText.vue'
+import ShinyText from '@/components/ShinyText/ShinyText.vue'
 
 const skillCategories = [
   {
@@ -65,13 +65,8 @@ const skillCategories = [
       <div class="skills__header">
         <span class="tag">// Skills & Expertise</span>
         <h2 class="section-title">
-          <GradientText
-            :colors="['#00d4aa', '#0099ff', '#00d4aa', '#0099ff']"
-            :animated-colors-direction="'horizontal'"
-            :animation-speed="3"
-          >
-            Technical Arsenal
-          </GradientText>
+          Technical
+          <ShinyText text="Skills" :speed="3" class="skills__shiny" />
         </h2>
         <p class="section-subtitle">
           A comprehensive toolkit built over years of production-grade experience.
@@ -119,6 +114,13 @@ const skillCategories = [
 <style scoped>
 .skills__header {
   margin-bottom: var(--space-3xl);
+}
+
+:deep(.skills__shiny) {
+  background: var(--color-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .skills__grid {

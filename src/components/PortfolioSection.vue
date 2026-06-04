@@ -17,11 +17,11 @@ const filters = [
 const projects = [
   {
     title: 'On Premise Infrastructure',
-    description: 'Architected and deployed scalable on-premise infrastructure using Kubernetes. Configured high-availability clusters and automated environment provisioning via Terraform.',
+    description: 'Architected and deployed scalable on-premise & VM infrastructure using Kubernetes. Configured high-availability clusters and automated environment provisioning via Terraform.',
     images: [
       '/images/projects/pods kubernetes.png',
-      '/images/projects/p1_2.webp',
-      '/images/projects/p1_3.webp'
+      '/images/projects/HPA.png',
+      '/images/projects/ESO.png'
     ],
     tags: ['Kubernetes', 'Docker', 'Terraform', 'Proxmox'],
     category: 'devops',
@@ -41,7 +41,7 @@ const projects = [
   // },
   {
     title: 'CI/CD Pipeline Automation',
-    description: 'Designed and implemented robust end-to-end continuous integration and deployment workflows. Integrated Docker, Jenkins, and GitHub Actions to reduce manual deployment errors.',
+    description: 'Designed and implemented robust end-to-end continuous integration and deployment workflows. Integrated Docker, GitLab Runner, and GitHub Actions to reduce manual deployment errors.',
     images: [
       '/images/projects/argocd.png',
       // '/images/projects/grafana.png',

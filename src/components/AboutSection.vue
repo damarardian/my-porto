@@ -1,15 +1,36 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import SplitText from '@/components/SplitText/SplitText.vue'
-import Counter from '@/components/Counter/Counter.vue'
+import Carousel from '@/components/Carousel/Carousel.vue'
 
 const isVisible = ref(false)
-const counterValues = ref({
-  years: 0,
-  projects: 0,
-  clients: 0,
-  uptime: 0
-})
+
+const statsCarouselItems = [
+  {
+    id: 1,
+    title: '1+',
+    description: 'Years Experience',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+  },
+  {
+    id: 2,
+    title: '7+',
+    description: 'Projects Completed',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>'
+  },
+  {
+    id: 3,
+    title: '4+',
+    description: 'Happy Clients',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
+  }
+  // {
+  //   id: 4,
+  //   title: '99%',
+  //   description: 'Server Uptime',
+  //   icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>'
+  // }
+]
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -17,9 +38,6 @@ onMounted(() => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           isVisible.value = true
-          setTimeout(() => {
-            counterValues.value = { years: 1, projects: 7, clients: 4, uptime: 99 }
-          }, 500)
         }
       })
     },
@@ -82,78 +100,16 @@ onMounted(() => {
           </div>
         </div>
 
-        <div class="about__stats">
-          <div class="about__stat-card">
-            <div class="about__stat-number">
-              <Counter
-                :value="counterValues.years"
-                :font-size="48"
-                :places="[1]"
-                :padding="0"
-                :gap="4"
-                text-color="#00d4aa"
-                font-weight="800"
-                gradient-from="#0a0a0f"
-                gradient-to="transparent"
-              />
-              <span class="about__stat-plus">+</span>
-            </div>
-            <span class="about__stat-label">Years Experience</span>
-          </div>
-
-          <div class="about__stat-card">
-            <div class="about__stat-number">
-              <Counter
-                :value="counterValues.projects"
-                :font-size="48"
-                :places="[10, 1]"
-                :padding="0"
-                :gap="4"
-                text-color="#00d4aa"
-                font-weight="800"
-                gradient-from="#0a0a0f"
-                gradient-to="transparent"
-              />
-              <span class="about__stat-plus">+</span>
-            </div>
-            <span class="about__stat-label">Projects Completed</span>
-          </div>
-
-          <div class="about__stat-card">
-            <div class="about__stat-number">
-              <Counter
-                :value="counterValues.clients"
-                :font-size="48"
-                :places="[10, 1]"
-                :padding="0"
-                :gap="4"
-                text-color="#00d4aa"
-                font-weight="800"
-                gradient-from="#0a0a0f"
-                gradient-to="transparent"
-              />
-              <span class="about__stat-plus">+</span>
-            </div>
-            <span class="about__stat-label">Happy Clients</span>
-          </div>
-
-          <div class="about__stat-card">
-            <div class="about__stat-number">
-              <Counter
-                :value="counterValues.uptime"
-                :font-size="48"
-                :places="[10, 1]"
-                :padding="0"
-                :gap="4"
-                text-color="#00d4aa"
-                font-weight="800"
-                gradient-from="#0a0a0f"
-                gradient-to="transparent"
-              />
-              <span class="about__stat-percent">%</span>
-            </div>
-            <span class="about__stat-label">Server Uptime</span>
-          </div>
+        <div class="about__stats-carousel">
+          <Carousel
+            :items="statsCarouselItems"
+            :base-width="280"
+            :autoplay="true"
+            :autoplay-delay="3000"
+            :pause-on-hover="true"
+            :loop="true"
+            :round="true"
+          />
         </div>
       </div>
     </div>
@@ -169,7 +125,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: var(--space-4xl);
-  align-items: start;
+  align-items: center;
 }
 
 .about__paragraph {
@@ -204,64 +160,19 @@ onMounted(() => {
   flex-shrink: 0;
 }
 
-.about__stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-lg);
-}
-
-.about__stat-card {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  text-align: center;
-  transition: all var(--transition-base);
-}
-
-.about__stat-card:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-glow);
-}
-
-.about__stat-number {
+.about__stats-carousel {
+  width: 100%;
   display: flex;
-  align-items: baseline;
   justify-content: center;
-  gap: 2px;
-  margin-bottom: var(--space-sm);
-}
-
-.about__stat-plus,
-.about__stat-percent {
-  font-size: var(--font-size-2xl);
-  font-weight: 800;
-  color: var(--color-accent-primary);
-}
-
-.about__stat-label {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
 }
 
 @media (max-width: 768px) {
   .about__grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
-  }
-
-  .about__stats {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .about__stats {
-    grid-template-columns: 1fr;
   }
 }
 </style>
