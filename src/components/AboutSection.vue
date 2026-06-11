@@ -67,13 +67,10 @@ onMounted(() => {
       <div class="about__grid">
         <div class="about__text">
           <p class="about__paragraph">
-            An Information Systems graduate with a holistic understanding of the software development lifecycle, currently specializing in DevOps engineering. My career trajectory—spanning from IT infrastructure support to full-stack development—enables me to effectively bridge the gap between software engineering and system operations.
+           An Information Systems graduate and DevOps Engineer who naturally bridges the gap between software engineering and system operations. My career journey—spanning from foundational IT Support at Gunadarma University to Full-Stack development using PHP/Laravel—gives me a holistic view of the entire software lifecycle. 
           </p>
           <p class="about__paragraph">
-            Currently, I am deeply focused on modern deployment strategies, containerization, and orchestration. I bring practical expertise in implementing and managing Docker and Kubernetes, including configuring multi-node clusters across both virtual and bare-metal environments to ensure scalable and resilient infrastructure.
-          </p>
-          <p class="about__paragraph">
-            My foundational technical skills are backed by solid expertise in PHP and building robust REST APIs using the Laravel framework, complemented by my proven track record as a Freelance Full-Stack Developer. I have successfully architected custom web solutions, ranging from a church management system utilizing automated cron jobs to a comprehensive corporate portal for Pupuk Rejo. Additionally, my early experience handling large-scale data processing and system maintenance as IT Support at Gunadarma University instilled in me a strong analytical approach to troubleshooting. I am driven by the challenge of optimizing deployment pipelines, ensuring system reliability, and continuously adopting modern infrastructure technologies to support robust application environments.
+           Today, I am deeply focused on modern deployment strategies, bringing hands-on expertise in Docker and configuring multi-node Kubernetes clusters from scratch on both virtual and bare-metal environments. I am constantly driven by the challenge of optimizing pipelines to build highly resilient and scalable infrastructure.
           </p>
 
           <div class="about__highlights">
