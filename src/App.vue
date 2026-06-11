@@ -1,9 +1,14 @@
 <script setup>
-import { ref, defineAsyncComponent } from 'vue'
+import { ref, defineAsyncComponent, onMounted, onUnmounted } from 'vue'
 import NavBar from '@/components/NavBar.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import Ribbons from '@/components/Ribbons/Ribbons.vue'
 import ClickSpark from '@/components/ClickSpark/ClickSpark.vue'
+import Lenis from '@/utils/lenis.js'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 // Lazy-loaded components below the fold to speed up initial First Contentful Paint
 const AboutSection = defineAsyncComponent(() => import('@/components/AboutSection.vue'))
@@ -15,17 +20,47 @@ const FooterSection = defineAsyncComponent(() => import('@/components/FooterSect
 const ProjectDetail = defineAsyncComponent(() => import('@/components/ProjectDetail.vue'))
 
 const activeProject = ref(null)
+let lenis = null
+
+onMounted(() => {
+  lenis = new Lenis({
+    lerp: 0.1,
+    smoothWheel: true,
+  })
+
+  lenis.on('scroll', ScrollTrigger.update)
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+  })
+
+  gsap.ticker.lagSmoothing(0)
+})
+
+onUnmounted(() => {
+  if (lenis) {
+    lenis.destroy()
+  }
+})
 
 const scrollTo = (id) => {
   const el = document.getElementById(id)
   if (el) {
-    el.scrollIntoView({ behavior: 'smooth' })
+    if (lenis) {
+      lenis.scrollTo(el)
+    } else {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 }
 
 const openProject = (project) => {
   activeProject.value = project
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (lenis) {
+    lenis.scrollTo(0, { immediate: true })
+  } else {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }
 }
 
 const closeProject = () => {
@@ -89,7 +124,7 @@ const closeProject = () => {
 .app {
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
 }
 
@@ -108,7 +143,7 @@ main {
 
 .page-wrapper {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .fade-enter-active,

@@ -67,17 +67,13 @@ onMounted(() => {
       <div class="about__grid">
         <div class="about__text">
           <p class="about__paragraph">
-            I'm a passionate <strong>DevOps Engineer</strong> and <strong>PHP Developer</strong>
-            with a focus on building reliable, scalable infrastructure and high-performance web applications.
+            An Information Systems graduate with a holistic understanding of the software development lifecycle, currently specializing in DevOps engineering. My career trajectory—spanning from IT infrastructure support to full-stack development—enables me to effectively bridge the gap between software engineering and system operations.
           </p>
           <p class="about__paragraph">
-            With extensive experience in cloud computing, containerization, and CI/CD pipelines,
-            I help teams ship faster and more reliably. My PHP expertise spans from Laravel to
-            custom framework development, always following clean code principles.
+            Currently, I am deeply focused on modern deployment strategies, containerization, and orchestration. I bring practical expertise in implementing and managing Docker and Kubernetes, including configuring multi-node clusters across both virtual and bare-metal environments to ensure scalable and resilient infrastructure.
           </p>
           <p class="about__paragraph">
-            I believe in the power of automation and infrastructure as code. Every line of code
-            I write aims to be maintainable, testable, and production-ready.
+            My foundational technical skills are backed by solid expertise in PHP and building robust REST APIs using the Laravel framework, complemented by my proven track record as a Freelance Full-Stack Developer. I have successfully architected custom web solutions, ranging from a church management system utilizing automated cron jobs to a comprehensive corporate portal for Pupuk Rejo. Additionally, my early experience handling large-scale data processing and system maintenance as IT Support at Gunadarma University instilled in me a strong analytical approach to troubleshooting. I am driven by the challenge of optimizing deployment pipelines, ensuring system reliability, and continuously adopting modern infrastructure technologies to support robust application environments.
           </p>
 
           <div class="about__highlights">
@@ -117,9 +113,9 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.about__header {
-  margin-bottom: var(--space-3xl);
-}
+/* .about__header {
+  margin-bottom: var(--space-md);
+} */
 
 .about__grid {
   display: grid;

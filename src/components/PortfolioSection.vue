@@ -190,6 +190,7 @@ const setFilter = (filterId) => {
           v-for="(project, idx) in filteredProjects"
           :key="project.title"
           class="portfolio__item"
+          :style="{ '--card-index': idx }"
         >
           <div class="portfolio__card-swap-wrapper">
             <CardSwap
@@ -279,9 +280,10 @@ const setFilter = (filterId) => {
 }
 
 .portfolio__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 80px var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  padding-bottom: 200px;
 }
 
 .portfolio__item {
@@ -291,7 +293,13 @@ const setFilter = (filterId) => {
   overflow: visible;
   transition: all var(--transition-base);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  position: sticky;
+  top: calc(120px + (var(--card-index) * 30px));
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
+  z-index: calc(var(--card-index) + 1);
+  min-height: 400px;
 }
 
 .portfolio__item:hover {
@@ -301,7 +309,7 @@ const setFilter = (filterId) => {
 
 .portfolio__card-swap-wrapper {
   position: relative;
-  width: auto !important;
+  width: 50% !important;
   height: auto !important;
   display: flex;
   align-items: center;
@@ -353,8 +361,13 @@ const setFilter = (filterId) => {
 }
 
 .portfolio__item-info {
-  padding: var(--space-lg) var(--space-xl) var(--space-xl);
-  border-top: 1px solid var(--color-border);
+  width: 50%;
+  padding: var(--space-2xl);
+  border-top: none;
+  border-left: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .portfolio__item-title {
@@ -412,8 +425,23 @@ const setFilter = (filterId) => {
 
 @media (max-width: 1024px) {
   .portfolio__grid {
-    grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 80px;
+  }
+  
+  .portfolio__item {
+    flex-direction: column;
+    top: calc(90px + (var(--card-index) * 20px));
+  }
+  
+  .portfolio__card-swap-wrapper,
+  .portfolio__item-info {
+    width: 100% !important;
+    border-left: none;
+  }
+  
+  .portfolio__item-info {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-xl);
   }
 }
 

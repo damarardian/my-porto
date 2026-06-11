@@ -42,26 +42,25 @@ export interface CardSwapProps {
 interface Slot {
   x: number;
   y: number;
-  z: number;
+  scale: number;
   zIndex: number;
 }
 
-const makeSlot = (i: number, distX: number, distY: number, total: number): Slot => ({
-  x: i * distX,
-  y: -i * distY,
-  z: -i * distX * 1.5,
+const makeSlot = (i: number, total: number): Slot => ({
+  x: 0,
+  y: i * -15, // Negative Y offset so cards peek from the top
+  scale: 1 - i * 0.05,
   zIndex: total - i
 });
 
-const placeNow = (el: HTMLElement, slot: Slot, skew: number) => {
+const placeNow = (el: HTMLElement, slot: Slot) => {
   gsap.set(el, {
     x: slot.x,
     y: slot.y,
-    z: slot.z,
     xPercent: -50,
     yPercent: -50,
-    skewY: skew,
-    transformOrigin: 'center center',
+    scale: slot.scale,
+    transformOrigin: 'top center',
     zIndex: slot.zIndex,
     force3D: true
   });
@@ -101,23 +100,14 @@ const handleCardClick = (index: number) => {
 };
 
 const config = computed(() => {
-  return props.easing === 'elastic'
-    ? {
-        ease: 'elastic.out(0.6,0.9)',
-        durDrop: 2,
-        durMove: 2,
-        durReturn: 2,
-        promoteOverlap: 0.9,
-        returnDelay: 0.05
-      }
-    : {
-        ease: 'power1.inOut',
-        durDrop: 0.8,
-        durMove: 0.8,
-        durReturn: 0.8,
-        promoteOverlap: 0.45,
-        returnDelay: 0.2
-      };
+  return {
+    ease: 'power3.out',
+    durDrop: 0.6,
+    durMove: 0.6,
+    durReturn: 0.6,
+    promoteOverlap: 0.7,
+    returnDelay: 0.05
+  };
 });
 
 const initializeCards = () => {
@@ -127,7 +117,7 @@ const initializeCards = () => {
 
   cardRefs.value.forEach((el, i) => {
     if (el) {
-      placeNow(el, makeSlot(i, props.cardDistance, props.verticalDistance, total), props.skewAmount);
+      placeNow(el, makeSlot(i, total));
     }
   });
 };
@@ -139,12 +129,11 @@ const updateCardPositions = () => {
 
   cardRefs.value.forEach((el, i) => {
     if (el) {
-      const slot = makeSlot(i, props.cardDistance, props.verticalDistance, total);
+      const slot = makeSlot(i, total);
       gsap.set(el, {
         x: slot.x,
         y: slot.y,
-        z: slot.z,
-        skewY: props.skewAmount
+        scale: slot.scale
       });
     }
   });
@@ -160,59 +149,58 @@ const swap = () => {
   const tl = gsap.timeline();
   tlRef.value = tl;
 
+  const dropEnd = config.value.durDrop;
+  const promoteTime = dropEnd - (dropEnd * config.value.promoteOverlap);
+
+  // 1. Drop the front card down and fade it out
   tl.to(elFront, {
-    x: '+=260',
-    opacity: 0.5,
-    scale: 0.9,
+    y: '+=150',
+    scale: 0.85,
+    opacity: 0,
     duration: config.value.durDrop,
     ease: config.value.ease
-  });
+  }, 0);
 
-  tl.addLabel('promote', `-=${config.value.durDrop * config.value.promoteOverlap}`);
+  // 2. Move the remaining cards up to their new slots
   rest.forEach((idx, i) => {
     const el = cardRefs.value[idx];
     if (!el) return;
 
-    const slot = makeSlot(i, props.cardDistance, props.verticalDistance, cardRefs.value.length);
-    tl.set(el, { zIndex: slot.zIndex }, 'promote');
+    const slot = makeSlot(i, cardRefs.value.length);
+    tl.set(el, { zIndex: slot.zIndex }, promoteTime);
     tl.to(
       el,
       {
-        x: slot.x,
         y: slot.y,
-        z: slot.z,
+        scale: slot.scale,
         duration: config.value.durMove,
         ease: config.value.ease
       },
-      `promote+=${i * 0.15}`
+      promoteTime
     );
   });
 
+  // 3. Snap the front card to the back of the stack AFTER the drop finishes
   const backSlot = makeSlot(
     cardRefs.value.length - 1,
-    props.cardDistance,
-    props.verticalDistance,
     cardRefs.value.length
   );
-  tl.addLabel('return', `promote+=${config.value.durMove * config.value.returnDelay}`);
-  tl.call(
-    () => {
-      gsap.set(elFront, { zIndex: backSlot.zIndex });
-    },
-    undefined,
-    'return'
-  );
-  tl.set(elFront, { y: backSlot.y, z: backSlot.z }, 'return');
+  
+  tl.set(elFront, { 
+    zIndex: backSlot.zIndex, 
+    y: backSlot.y, 
+    scale: backSlot.scale 
+  }, dropEnd);
+  
+  // 4. Fade it back in
   tl.to(
     elFront,
     {
-      x: backSlot.x,
       opacity: 1,
-      scale: 1,
       duration: config.value.durReturn,
       ease: config.value.ease
     },
-    'return'
+    dropEnd + config.value.returnDelay
   );
 
   tl.call(() => {
