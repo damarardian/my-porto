@@ -95,7 +95,7 @@ const projects = [
     description: 'Delivered a tailored multi-tenant SaaS application for a freelance client. Executed isolated PostgreSQL database handling connected to a responsive Vue.js frontend.',
     images: [
       '/images/projects/nabung_presentation.png',
-      '/images/projects/p4_2.webp',
+      '/images/projects/pupuk_presentation.png',
       '/images/projects/p4_3.webp'
     ],
     tags: ['Laravel', 'PostgreSQL', 'Redis', 'Vue.js'],
