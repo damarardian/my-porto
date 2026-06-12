@@ -169,8 +169,7 @@ onUnmounted(() => {
 <style scoped>
 .circular-gallery-container {
   width: 100%;
-  height: 60vh;
-  min-height: 500px;
+  height: 400px;
   position: relative;
   display: flex;
   align-items: center;
