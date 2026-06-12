@@ -17,7 +17,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--color-accent-primary) var(--color-bg-secondary);
 }
