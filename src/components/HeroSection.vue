@@ -68,7 +68,7 @@ import profileImg from '@/assets/profile.png'
 
           <p class="hero__desc">
             Building scalable infrastructure and crafting robust web applications.
-            Specialized in Docker, Kubernetes, CI/CD, Laravel, and cloud-native solutions.
+            Specialized in Docker, Kubernetes, CI/CD, Laravel, and baremetal solutions.
           </p>
 
           <div class="hero__actions">

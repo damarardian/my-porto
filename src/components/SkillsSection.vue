@@ -4,7 +4,7 @@ import ShinyText from '@/components/ShinyText/ShinyText.vue'
 
 const skillCategories = [
   {
-    title: 'DevOps & Cloud',
+    title: 'DevOps',
     glowColor: '170 80 60',
     colors: ['#00d4aa', '#0099ff', '#00d4aa'],
     skills: [
@@ -13,7 +13,6 @@ const skillCategories = [
       // { name: 'AWS', icon: 'amazonwebservices/amazonwebservices-original-wordmark' },
       // { name: 'GCP', icon: 'googlecloud/googlecloud-original' },
       { name: 'Terraform', icon: 'terraform/terraform-original' },
-      { name: 'Ansible', icon: 'ansible/ansible-original' },
       { name: 'Linux', icon: 'linux/linux-original' }
     ]
   },

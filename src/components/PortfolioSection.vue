@@ -11,7 +11,7 @@ const filters = [
   { id: 'all', label: 'All Projects' },
   { id: 'devops', label: 'DevOps' },
   { id: 'php', label: 'Website Projects' },
-  { id: 'cloud', label: 'Cloud' }
+  { id: 'cloud', label: 'CI/CD' }
 ]
 
 const projects = [
