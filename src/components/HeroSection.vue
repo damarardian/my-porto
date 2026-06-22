@@ -4,10 +4,6 @@ import DecryptedText from '@/components/DecryptedText/DecryptedText.vue'
 import BlurText from '@/components/BlurText/BlurText.vue'
 import ProfileCard from '@/components/ProfileCard/ProfileCard.vue'
 import profileImg from '@/assets/profile.png'
-
-const downloadPDF = () => {
-  window.print()
-}
 </script>
 
 <template>
@@ -83,14 +79,14 @@ const downloadPDF = () => {
               </svg>
               View Portfolio
             </a>
-            <button class="btn btn-outline" @click="downloadPDF">
+            <a href="/cv.pdf" download="Damar_Ardian_CV.pdf" target="_blank" class="btn btn-outline">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-              Download PDF
-            </button>
+              Download CV
+            </a>
             <a href="#contact" class="btn btn-outline" @click.prevent="$emit('scrollTo', 'contact')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/>
