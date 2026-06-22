@@ -1,0 +1,80 @@
+/* ===== Print Styles ===== */
+@media print {
+  /* Hide non-essential UI elements */
+  nav, .navbar, .navbar__toggle, .navbar__menu, 
+  .hero__scroll-indicator, .hero__actions,
+  footer, #contact {
+    display: none !important;
+  }
+
+  /* Reset body colors for print */
+  body, html {
+    background-color: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+
+  /* Ensure text is black and crisp */
+  p, h1, h2, h3, h4, h5, h6, span, div, a, li {
+    color: black !important;
+    text-shadow: none !important;
+  }
+
+  /* Remove gradient backgrounds and text fills */
+  .gradient-text, .hero__name, .section-title, .navbar__logo-symbol {
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
+
+  /* Fix page breaks */
+  section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    padding: 20px 0 !important;
+  }
+
+  /* Remove background animations */
+  .app__bg-ribbons, canvas, .glitch-container, .hero__bg {
+    display: none !important;
+  }
+
+  /* Adjust hero section for print */
+  .hero {
+    min-height: auto !important;
+    padding-top: 0 !important;
+  }
+  .hero__content {
+    padding: 0 !important;
+  }
+  .hero__overlay {
+    background: none !important;
+  }
+  
+  /* Reset layout constraints to use full page */
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Style links to show URL occasionally or just keep them black */
+  a {
+    text-decoration: none !important;
+  }
+  
+  /* Make cards printer friendly */
+  .glass, .pc-card, .btn-outline {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    color: black !important;
+  }
+
+  /* Tags outline */
+  .tag, .hero__tag {
+    border: 1px solid #666 !important;
+    color: #333 !important;
+    background: transparent !important;
+  }
+}
