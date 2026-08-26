@@ -10,7 +10,7 @@ const emit = defineEmits(['view-project'])
 const filters = [
   { id: 'all', label: 'All Projects' },
   { id: 'devops', label: 'DevOps' },
-  { id: 'php', label: 'Website Projects' },
+  { id: 'itops', label: 'IT Operations' },
   { id: 'cloud', label: 'CI/CD' }
 ]
 
@@ -91,15 +91,15 @@ const projects = [
     link: '#'
   },
   {
-    title: 'Website Projects',
-    description: 'Delivered a tailored multi-tenant SaaS application for a freelance client. Executed isolated PostgreSQL database handling connected to a responsive Vue.js frontend.',
+    title: 'IT Operations & Troubleshooting',
+    description: 'Managed L2 IT Operations, reproducing complex issues and performing deep root cause analysis to maintain high system reliability.',
     images: [
       '/images/projects/nabung_presentation.png',
       '/images/projects/pupuk_presentation.png',
       '/images/projects/p4_3.webp'
     ],
-    tags: ['Laravel', 'PostgreSQL', 'Redis', 'Vue.js'],
-    category: 'php',
+    tags: ['Root Cause Analysis', 'Issue Reproduction', 'Problem Solving', 'Monitoring'],
+    category: 'itops',
     link: '#'
   },
   {
@@ -170,7 +170,7 @@ const setFilter = (filterId) => {
           <ShinyText text="Projects" :speed="3" class="portfolio__shiny" />
         </h2>
         <p class="section-subtitle">
-          A selection of projects that showcase my expertise in DevOps and PHP development.
+          A selection of projects that showcase my expertise in DevOps and L2 IT Operations.
         </p>
       </div>
 

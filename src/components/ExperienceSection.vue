@@ -35,6 +35,25 @@ onUnmounted(() => {
 
 const experiences = [
   {
+    id: 0,
+    company: 'insignia.co.id',
+    period: 'Jul 2026 - Present',
+    roles: [
+      {
+        title: 'L2 IT Operations',
+        period: 'Aug 2026 - Present',
+        description: 'Managed L2 IT Operations, reproducing complex issues and performing deep root cause analysis to maintain high system reliability.',
+        tags: ['Root Cause Analysis', 'Issue Reproduction', 'Problem Solving', 'Monitoring']
+      },
+      {
+        title: 'DevOps Engineer Intern',
+        period: 'Jul 2026 - Aug 2026',
+        description: 'Assisted in infrastructure management and deployment automation, gaining hands-on experience in CI/CD and system monitoring.',
+        tags: ['CI/CD', 'Linux', 'Monitoring']
+      }
+    ]
+  },
+  {
     id: 1,
     title: 'DevOps Engineer Intern',
     company: 'PT. Wahana Prestasi Logistik',
@@ -91,14 +110,32 @@ const experiences = [
 
           <div class="timeline__content">
             <div class="timeline__date timeline__date--mobile">{{ exp.period }}</div>
-            <h3 class="timeline__title">{{ exp.title }}</h3>
-            <h4 class="timeline__company">{{ exp.company }}</h4>
-            <p class="timeline__desc">{{ exp.description }}</p>
-            <div class="timeline__tags">
-              <span v-for="tag in exp.tags" :key="tag" class="timeline__tag">
-                {{ tag }}
-              </span>
-            </div>
+            
+            <template v-if="exp.roles">
+              <h3 class="timeline__company-main">{{ exp.company }}</h3>
+              <div v-for="(role, rIdx) in exp.roles" :key="rIdx" class="timeline__role">
+                <div class="timeline__role-header">
+                  <h4 class="timeline__role-title">{{ role.title }}</h4>
+                  <span class="timeline__role-period">{{ role.period }}</span>
+                </div>
+                <p class="timeline__desc">{{ role.description }}</p>
+                <div class="timeline__tags">
+                  <span v-for="tag in role.tags" :key="tag" class="timeline__tag">
+                    {{ tag }}
+                  </span>
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <h3 class="timeline__title">{{ exp.title }}</h3>
+              <h4 class="timeline__company">{{ exp.company }}</h4>
+              <p class="timeline__desc">{{ exp.description }}</p>
+              <div class="timeline__tags">
+                <span v-for="tag in exp.tags" :key="tag" class="timeline__tag">
+                  {{ tag }}
+                </span>
+              </div>
+            </template>
           </div>
         </div>
 
@@ -261,6 +298,47 @@ const experiences = [
   color: var(--color-text-secondary);
   font-weight: 500;
   margin-bottom: var(--space-md);
+}
+
+.timeline__company-main {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.timeline__role {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.timeline__role:first-of-type {
+  margin-top: var(--space-md);
+  padding-top: 0;
+  border-top: none;
+}
+
+.timeline__role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xs);
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.timeline__role-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.timeline__role-period {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent-primary);
+  font-family: var(--font-mono);
+  font-weight: 500;
 }
 
 .timeline__desc {

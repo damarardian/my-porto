@@ -67,7 +67,7 @@ onMounted(() => {
       <div class="about__grid">
         <div class="about__text">
           <p class="about__paragraph">
-           An Information Systems graduate and DevOps Engineer who naturally bridges the gap between software engineering and system operations. My career journey—spanning from foundational IT Support at Gunadarma University to Full-Stack development using PHP/Laravel—gives me a holistic view of the entire software lifecycle. 
+           An Information Systems graduate and DevOps & L2 IT Ops Engineer who naturally bridges the gap between software engineering and system operations. My career journey—spanning from foundational IT Support at Gunadarma University, to DevOps engineer at PT. Wahana Prestasi Logistik then L2 - IT Operations—gives me a holistic view of system reliability and issue resolution.
           </p>
           <p class="about__paragraph">
            Today, I am deeply focused on modern deployment strategies, bringing hands-on expertise in Docker and configuring multi-node Kubernetes clusters from scratch on both virtual and bare-metal environments. I am constantly driven by the challenge of optimizing pipelines to build highly resilient and scalable infrastructure.
@@ -88,7 +88,7 @@ onMounted(() => {
             </div>
             <div class="about__highlight">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <span>Laravel & PHP Enterprise Applications</span>
+              <span>Root Cause Analysis & Issue Reproduction</span>
             </div>
           </div>
         </div>

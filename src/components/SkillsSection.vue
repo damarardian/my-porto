@@ -43,6 +43,17 @@ const skillCategories = [
     ]
   },
   {
+    title: 'IT Operations',
+    glowColor: '260 80 70',
+    colors: ['#c084fc', '#8978ff', '#c084fc'],
+    skills: [
+      { name: 'Root Cause Analysis', customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>' },
+      { name: 'Problem Solver', customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>' },
+      { name: 'Reproduce Issue', customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>' },
+      { name: 'Monitoring', customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>' }
+    ]
+  },
+  {
     title: 'Tools & Others',
     glowColor: '35 80 60',
     colors: ['#ffaa00', '#f472b6', '#ffaa00'],
@@ -99,7 +110,8 @@ const skillCategories = [
                 class="skills__tag"
                 :title="skill.name"
               >
-                <img :src="`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.icon}.svg`" :alt="skill.name" class="skills__tag-icon" />
+                <img v-if="skill.icon" :src="`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.icon}.svg`" :alt="skill.name" class="skills__tag-icon" />
+                <div v-else-if="skill.customIcon" v-html="skill.customIcon" class="skills__tag-custom-icon"></div>
                 <span class="skills__tag-name">{{ skill.name }}</span>
               </div>
             </div>
@@ -177,6 +189,16 @@ const skillCategories = [
   object-fit: contain;
 }
 
+.skills__tag-custom-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
 .skills__tag-name {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
@@ -192,7 +214,8 @@ const skillCategories = [
   transform: translateY(-2px);
 }
 
-.skills__tag:hover .skills__tag-name {
+.skills__tag:hover .skills__tag-name,
+.skills__tag:hover .skills__tag-custom-icon {
   color: var(--color-accent-primary);
 }
 
